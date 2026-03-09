@@ -1,0 +1,287 @@
+/* css/estilo.css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f0f0f0;
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+    border-bottom: 3px solid #4CAF50;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.programa {
+    margin-bottom: 30px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.programa h2 {
+    color: #4CAF50;
+    margin-top: 0;
+    border-bottom: 2px solid #4CAF50;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+.programa p {
+    color: #666;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 5px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+button.executar-todos {
+    background-color: #2196F3;
+    width: 100%;
+    padding: 15px;
+    font-size: 18px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+button.executar-todos:hover {
+    background-color: #1976D2;
+}
+
+.botoes-programa {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 15px 0;
+}
+
+button.limpar {
+    background-color: #f44336;
+}
+
+button.limpar:hover {
+    background-color: #da190b;
+}
+
+.resultado {
+    margin-top: 20px;
+    border: 2px solid #4CAF50;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.console {
+    background-color: #1e1e1e;
+    color: #00ff00;
+    padding: 15px;
+    border-radius: 5px;
+    font-family: 'Courier New', monospace;
+    min-height: 200px;
+    max-height: 400px;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+/* ESTILOS NOVOS PARA MELHOR VISUALIZAÇÃO */
+
+/* Cabeçalho do programa */
+.programa-header {
+    background-color: #333;
+    color: white;
+    padding: 8px 15px;
+    margin: -15px -15px 15px -15px;
+    border-radius: 5px 5px 0 0;
+    font-weight: bold;
+    font-size: 16px;
+    border-bottom: 2px solid #4CAF50;
+}
+
+/* Área de dicas em destaque */
+.dicas-container {
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #2a2a2a;
+    border-radius: 5px;
+    border-left: 4px solid #ffaa00;
+}
+
+.dica-item {
+    padding: 8px;
+    margin: 5px 0;
+    background-color: #333;
+    border-radius: 3px;
+    font-size: 15px;
+}
+
+/* Cores diferentes para dicas */
+.dica-maior {
+    color: #ffaa00;
+    font-weight: bold;
+}
+
+.dica-menor {
+    color: #66ccff;
+    font-weight: bold;
+}
+
+.dica-acerto {
+    color: #00ff00;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* Separador visual */
+.separador {
+    border-top: 1px dashed #666;
+    margin: 15px 0;
+    text-align: center;
+    color: #888;
+    font-size: 12px;
+}
+
+.separador span {
+    background-color: #2a2a2a;
+    padding: 0 10px;
+    position: relative;
+    top: -10px;
+}
+
+/* Mensagem de tentativa atual */
+.tentativa-atual {
+    background-color: #2a2a2a;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 5px 0;
+    font-size: 16px;
+    border: 1px solid #4CAF50;
+}
+
+.numero-digitado {
+    color: #ffaa00;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Contador de tentativas */
+.contador-tentativas {
+    background-color: #4CAF50;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 3px;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+/* Informações do programa */
+.info-programa {
+    background-color: #2a2a2a;
+    padding: 15px;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+
+.info-titulo {
+    color: #4CAF50;
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+/* Mensagens de resultado */
+.resultado-final {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    margin: 10px 0;
+    font-size: 18px;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Scroll personalizado */
+.console::-webkit-scrollbar {
+    width: 10px;
+}
+
+.console::-webkit-scrollbar-track {
+    background: #2a2a2a;
+}
+
+.console::-webkit-scrollbar-thumb {
+    background: #4CAF50;
+    border-radius: 5px;
+}
+
+.console::-webkit-scrollbar-thumb:hover {
+    background: #45a049;
+}
+
+/* Botão de voltar ao topo do console */
+.console-topo {
+    background-color: #666;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.console-topo:hover {
+    background-color: #888;
+}
+
+/* Container de controle do console */
+.console-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.info {
+    background-color: #e3f2fd;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    border-left: 4px solid #2196F3;
+}
+
+.info strong {
+    color: #1976D2;
+}

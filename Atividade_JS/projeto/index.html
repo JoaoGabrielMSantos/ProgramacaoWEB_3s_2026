@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5 Programas JavaScript</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>5 Programas JavaScript</h1>
+    
+    <div class="container">
+        <div class="info">
+            <strong>Instruções:</strong> Clique nos botões abaixo para executar cada programa individualmente.
+            Os resultados aparecerão no console.
+        </div>
+
+        <div class="programa">
+            <h2>1. Jogo de Adivinhação</h2>
+            <p>Adivinhe o número secreto entre 1 e 20. O programa dará dicas se o número é maior ou menor.</p>
+            <button onclick="JogoAdivinhacao.jogar()">Jogar</button>
+        </div>
+        
+        <div class="programa">
+            <h2>2. Pedra, Papel ou Tesoura</h2>
+            <p>Jogue contra o computador. Escolha entre pedra, papel ou tesoura.</p>
+            <button onclick="JogoPedraPapelTesoura.jogar()">Jogar</button>
+        </div>
+        
+        <div class="programa">
+            <h2>3. Tabuada</h2>
+            <p>Veja a tabuada de qualquer número de 1 a 10.</p>
+            <button onclick="Tabuada.calcular()">Calcular</button>
+        </div>
+        
+        <div class="programa">
+            <h2>4. Triângulo de Asteriscos</h2>
+            <p>Desenhe um triângulo com asteriscos. Escolha o número de linhas.</p>
+            <button onclick="TrianguloAsteriscos.desenhar()">Desenhar</button>
+        </div>
+        
+        <div class="programa">
+            <h2>5. Soma da Série (1 + 11 + 111 + ...)</h2>
+            <p>Calcule a soma da série com N termos (ex: 1 + 11 + 111 + 1111).</p>
+            <button onclick="SomaSerie.calcular()">Calcular</button>
+        </div>
+        
+        <div class="controles">
+            <button class="limpar" onclick="Main.limparConsole()">Limpar Console</button>
+        </div>
+        
+        <h3>Console:</h3>
+        <div class="resultado">
+            <div id="console" class="console">
+                Clique em um botão para começar...
+            </div>
+        </div>
+    </div>
+
+    <script src="js/jogoAdivinhacao.js"></script>
+    <script src="js/jogoPedraPapelTesoura.js"></script>
+    <script src="js/tabuada.js"></script>
+    <script src="js/trianguloAsteriscos.js"></script>
+    <script src="js/somaSerie.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
