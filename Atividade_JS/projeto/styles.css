@@ -9,13 +9,14 @@ body {
     max-width: 900px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #f0f0f0;
+    background-color: #2e2d2d;
 }
 
+
 h1 {
-    color: #333;
+    color: #d1d0d0;
     text-align: center;
-    border-bottom: 3px solid #4CAF50;
+    border-bottom: 3px solid #904caf;
     padding-bottom: 10px;
     margin-bottom: 20px;
 }
@@ -36,9 +37,9 @@ h1 {
 }
 
 .programa h2 {
-    color: #4CAF50;
+    color: #904caf;
     margin-top: 0;
-    border-bottom: 2px solid #4CAF50;
+    border-bottom: 2px solid #9a5fca;
     padding-bottom: 5px;
     margin-bottom: 10px;
 }
@@ -50,7 +51,7 @@ h1 {
 }
 
 button {
-    background-color: #4CAF50;
+    background-color: #904caf;
     color: white;
     padding: 10px 20px;
     border: none;
@@ -62,7 +63,7 @@ button {
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: #8929b6;
 }
 
 .botoes-programa {
