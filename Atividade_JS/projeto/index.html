@@ -4,65 +4,142 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>5 Programas JavaScript</title>
-    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <h1>5 Programas JavaScript</h1>
     
-    <div class="container">
-        <div class="info">
-            <strong>Instruções:</strong> Clique nos botões abaixo para executar cada programa individualmente, 
-            ou use o botão "Executar Todos em Sequência" para rodar todos de uma vez.
-            Os resultados aparecerão no console abaixo.
-        </div>
-        
-        <div class="programa">
-            <h2>1. Jogo de Adivinhação</h2>
-            <p>Adivinhe o número secreto entre 1 e 20. O programa dará dicas se o número é maior ou menor.</p>
-            <button onclick="JogoAdivinhacao.jogar()">Jogar</button>
-        </div>
-        
-        <div class="programa">
-            <h2>2. Pedra, Papel ou Tesoura</h2>
-            <p>Jogue contra o computador. Escolha entre pedra, papel ou tesoura.</p>
-            <button onclick="JogoPedraPapelTesoura.jogar()">Jogar</button>
-        </div>
-        
-        <div class="programa">
-            <h2>3. Tabuada</h2>
-            <p>Veja a tabuada de qualquer número de 1 a 10.</p>
-            <button onclick="Tabuada.calcular()">Calcular</button>
-        </div>
-        
-        <div class="programa">
-            <h2>4. Triângulo de Asteriscos</h2>
-            <p>Desenhe um triângulo com asteriscos. Escolha o número de linhas.</p>
-            <button onclick="TrianguloAsteriscos.desenhar()">Desenhar</button>
-        </div>
-        
-        <div class="programa">
-            <h2>5. Soma da Série (1 + 11 + 111 + ...)</h2>
-            <p>Calcule a soma da série com N termos (ex: 1 + 11 + 111 + 1111).</p>
-            <button onclick="SomaSerie.calcular()">Calcular</button>
-        </div>
-        
-        <div class="controles">
-            <button class="limpar" onclick="Main.limparConsole()">Limpar Console</button>
-        </div>
-        
-        <h3>Console:</h3>
-        <div class="resultado">
-            <div id="console" class="console">
-                Clique em um botão para começar...
-            </div>
-        </div>
-    </div>
+    <button onclick="jogoAdivinhacao()">1. Jogo de Adivinhação</button>
+    <button onclick="jogoPedraPapelTesoura()">2. Pedra, Papel ou Tesoura</button>
+    <button onclick="tabuada()">3. Tabuada</button>
+    <button onclick="trianguloAsteriscos()">4. Triângulo de Asteriscos</button>
+    <button onclick="somaSerie()">5. Soma da Série</button>
+    
+    <p>  Abra o console do navegador para ver os resultados!</p>
 
-    <script src="js/jogoAdivinhacao.js"></script>
-    <script src="js/jogoPedraPapelTesoura.js"></script>
-    <script src="js/tabuada.js"></script>
-    <script src="js/trianguloAsteriscos.js"></script>
-    <script src="js/somaSerie.js"></script>
-    <script src="js/main.js"></script>
+    <script>
+        // 1. Jogo de Adivinhação
+        function jogoAdivinhacao() {
+            console.log("=== JOGO DE ADIVINHAÇÃO ===");
+            
+            const numeroSecreto = Math.floor(Math.random() * 20) + 1;
+            let tentativa;
+            let acertou = false;
+            
+            console.log("Tente adivinhar o número secreto entre 1 e 20!");
+            
+            while (!acertou) {
+                tentativa = parseInt(prompt("Digite seu palpite (1-20):"));
+                
+                if (tentativa === numeroSecreto) {
+                    console.log("Parabéns! Você acertou!");
+                    acertou = true;
+                } else if (tentativa < numeroSecreto) {
+                    console.log(tentativa + " - O número secreto é MAIOR!");
+                } else {
+                    console.log(tentativa + " - O número secreto é MENOR!");
+                }
+            }
+        }
+
+        // 2. Pedra, Papel ou Tesoura
+        function jogoPedraPapelTesoura() {
+            console.log("=== PEDRA, PAPEL OU TESOURA ===");
+            
+            const opcoes = ["pedra", "papel", "tesoura"];
+            
+            let escolhaUsuario = prompt("Escolha: pedra, papel ou tesoura").toLowerCase();
+            
+            while (!opcoes.includes(escolhaUsuario)) {
+                escolhaUsuario = prompt("Opção inválida! Escolha: pedra, papel ou tesoura").toLowerCase();
+            }
+            
+            const escolhaComputador = opcoes[Math.floor(Math.random() * 3)];
+            
+            console.log("Você escolheu: " + escolhaUsuario);
+            console.log("Computador escolheu: " + escolhaComputador);
+            
+            if (escolhaUsuario === escolhaComputador) {
+                console.log("Empate!");
+            } else if (
+                (escolhaUsuario === "pedra" && escolhaComputador === "tesoura") ||
+                (escolhaUsuario === "papel" && escolhaComputador === "pedra") ||
+                (escolhaUsuario === "tesoura" && escolhaComputador === "papel")
+            ) {
+                console.log("Você VENCEU!");
+            } else {
+                console.log("Você PERDEU!");
+            }
+        }
+
+        // 3. Tabuada
+        function tabuada() {
+            console.log("=== TABUADA ===");
+            
+            const numero = parseInt(prompt("Digite um número para ver sua tabuada:"));
+            
+            if (isNaN(numero)) {
+                console.log("Por favor, digite um número válido!");
+                return;
+            }
+            
+            console.log("Tabuada do " + numero + ":");
+            console.log("=================");
+            
+            for (let i = 1; i <= 10; i++) {
+                console.log(numero + " x " + i + " = " + (numero * i));
+            }
+        }
+
+        // 4. Triângulo de Asteriscos
+        function trianguloAsteriscos() {
+            console.log("=== TRIÂNGULO DE ASTERISCOS ===");
+            
+            const linhas = parseInt(prompt("Digite o número de linhas do triângulo:"));
+            
+            if (isNaN(linhas) || linhas <= 0) {
+                console.log("Por favor, digite um número válido maior que zero!");
+                return;
+            }
+            
+            console.log("");
+            for (let i = 1; i <= linhas; i++) {
+                let linha = "";
+                for (let j = 1; j <= i; j++) {
+                    linha += "*";
+                }
+                console.log(linha);
+            }
+        }
+
+        // 5. Soma da Série
+        function somaSerie() {
+            console.log("=== SOMA DA SÉRIE (1 + 11 + 111 + ...) ===");
+            
+            const n = parseInt(prompt("Digite a quantidade de termos:"));
+            
+            if (isNaN(n) || n <= 0) {
+                console.log("Por favor, digite um número válido maior que zero!");
+                return;
+            }
+            
+            let soma = 0;
+            let termo = 0;
+            let expressao = "";
+            
+            for (let i = 1; i <= n; i++) {
+                termo = termo * 10 + 1;
+                soma += termo;
+                
+                if (i === 1) {
+                    expressao += termo;
+                } else {
+                    expressao += " + " + termo;
+                }
+            }
+            
+            console.log(expressao);
+            console.log("A soma é: " + soma);
+        }
+    </script>
 </body>
 </html>
