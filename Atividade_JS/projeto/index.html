@@ -1,145 +1,231 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>5 Programas JavaScript</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>5 Jogos JavaScript</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: sans-serif; background: #f0f0f0; padding: 24px; color: #222; }
+    h1 { margin-bottom: 20px; font-size: 1.5rem; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+    .card { background: #fff; border-radius: 8px; padding: 20px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
+    .card h2 { font-size: 1rem; margin-bottom: 12px; color: #333; }
+    .card input {
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      margin-bottom: 8px;
+    }
+    .card button {
+      width: 100%;
+      padding: 8px;
+      background: #3b82f6;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      margin-bottom: 6px;
+    }
+    .card button:hover { background: #2563eb; }
+    .card button.secondary { background: #6b7280; }
+    .card button.secondary:hover { background: #4b5563; }
+    .output {
+      margin-top: 10px;
+      background: #f8f8f8;
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+      padding: 10px;
+      font-size: 0.88rem;
+      min-height: 40px;
+      white-space: pre-wrap;
+      line-height: 1.6;
+    }
+    .error { color: #dc2626; }
+    .success { color: #16a34a; font-weight: bold; }
+    .info { color: #2563eb; }
+    .hint { color: #7c3aed; }
+  </style>
 </head>
 <body>
-    <h1>5 Programas JavaScript</h1>
-    
-    <button onclick="jogoAdivinhacao()">1. Jogo de Adivinhação</button>
-    <button onclick="jogoPedraPapelTesoura()">2. Pedra, Papel ou Tesoura</button>
-    <button onclick="tabuada()">3. Tabuada</button>
-    <button onclick="trianguloAsteriscos()">4. Triângulo de Asteriscos</button>
-    <button onclick="somaSerie()">5. Soma da Série</button>
-    
-    <p>  Abra o console do navegador para ver os resultados!</p>
+  <h1>5 Jogos JavaScript</h1>
+  <div class="grid">
 
-    <script>
-        // 1. Jogo de Adivinhação
-        function jogoAdivinhacao() {
-            console.log("=== JOGO DE ADIVINHAÇÃO ===");
-            
-            const numeroSecreto = Math.floor(Math.random() * 20) + 1;
-            let tentativa;
-            let acertou = false;
-            
-            console.log("Tente adivinhar o número secreto entre 1 e 20!");
-            
-            while (!acertou) {
-                tentativa = parseInt(prompt("Digite seu palpite (1-20):"));
-                
-                if (tentativa === numeroSecreto) {
-                    console.log("Parabéns! Você acertou!");
-                    acertou = true;
-                } else if (tentativa < numeroSecreto) {
-                    console.log(tentativa + " - O número secreto é MAIOR!");
-                } else {
-                    console.log(tentativa + " - O número secreto é MENOR!");
-                }
-            }
-        }
+    <div class="card">
+      <h2>1. Jogo de Adivinhação</h2>
+      <input type="text" id="palpite" placeholder="Digite seu palpite (1-20)">
+      <button onclick="adivinhar()">Tentar</button>
+      <button class="secondary" onclick="resetarAdivinhacao()">Novo Jogo</button>
+      <div class="output" id="outputAdivinhacao">Tente adivinhar o número entre 1 e 20!</div>
+    </div>
 
-        // 2. Pedra, Papel ou Tesoura
-        function jogoPedraPapelTesoura() {
-            console.log("=== PEDRA, PAPEL OU TESOURA ===");
-            
-            const opcoes = ["pedra", "papel", "tesoura"];
-            
-            let escolhaUsuario = prompt("Escolha: pedra, papel ou tesoura").toLowerCase();
-            
-            while (!opcoes.includes(escolhaUsuario)) {
-                escolhaUsuario = prompt("Opção inválida! Escolha: pedra, papel ou tesoura").toLowerCase();
-            }
-            
-            const escolhaComputador = opcoes[Math.floor(Math.random() * 3)];
-            
-            console.log("Você escolheu: " + escolhaUsuario);
-            console.log("Computador escolheu: " + escolhaComputador);
-            
-            if (escolhaUsuario === escolhaComputador) {
-                console.log("Empate!");
-            } else if (
-                (escolhaUsuario === "pedra" && escolhaComputador === "tesoura") ||
-                (escolhaUsuario === "papel" && escolhaComputador === "pedra") ||
-                (escolhaUsuario === "tesoura" && escolhaComputador === "papel")
-            ) {
-                console.log("Você VENCEU!");
-            } else {
-                console.log("Você PERDEU!");
-            }
-        }
+    <div class="card">
+      <h2>2. Pedra, Papel ou Tesoura</h2>
+      <input type="text" id="escolhaUsuario" placeholder="Digite: pedra, papel ou tesoura">
+      <button onclick="jogarPPS()">Jogar</button>
+      <div class="output" id="outputPPS">Digite sua escolha e clique em Jogar!</div>
+    </div>
 
-        // 3. Tabuada
-        function tabuada() {
-            console.log("=== TABUADA ===");
-            
-            const numero = parseInt(prompt("Digite um número para ver sua tabuada:"));
-            
-            if (isNaN(numero)) {
-                console.log("Por favor, digite um número válido!");
-                return;
-            }
-            
-            console.log("Tabuada do " + numero + ":");
-            console.log("=================");
-            
-            for (let i = 1; i <= 10; i++) {
-                console.log(numero + " x " + i + " = " + (numero * i));
-            }
-        }
+    <div class="card">
+      <h2>3. Tabuada</h2>
+      <input type="text" id="numTabuada" placeholder="Digite um número">
+      <button onclick="mostrarTabuada()">Ver Tabuada</button>
+      <div class="output" id="outputTabuada">Digite um número para ver sua tabuada.</div>
+    </div>
 
-        // 4. Triângulo de Asteriscos
-        function trianguloAsteriscos() {
-            console.log("=== TRIÂNGULO DE ASTERISCOS ===");
-            
-            const linhas = parseInt(prompt("Digite o número de linhas do triângulo:"));
-            
-            if (isNaN(linhas) || linhas <= 0) {
-                console.log("Por favor, digite um número válido maior que zero!");
-                return;
-            }
-            
-            console.log("");
-            for (let i = 1; i <= linhas; i++) {
-                let linha = "";
-                for (let j = 1; j <= i; j++) {
-                    linha += "*";
-                }
-                console.log(linha);
-            }
-        }
+    <div class="card">
+      <h2>4. Triângulo de Asteriscos</h2>
+      <input type="text" id="numLinhas" placeholder="Número de linhas">
+      <button onclick="mostrarTriangulo()">Gerar Triângulo</button>
+      <div class="output" id="outputTriangulo" style="font-family: monospace;">Digite o número de linhas.</div>
+    </div>
 
-        // 5. Soma da Série
-        function somaSerie() {
-            console.log("=== SOMA DA SÉRIE (1 + 11 + 111 + ...) ===");
-            
-            const n = parseInt(prompt("Digite a quantidade de termos:"));
-            
-            if (isNaN(n) || n <= 0) {
-                console.log("Por favor, digite um número válido maior que zero!");
-                return;
-            }
-            
-            let soma = 0;
-            let termo = 0;
-            let expressao = "";
-            
-            for (let i = 1; i <= n; i++) {
-                termo = termo * 10 + 1;
-                soma += termo;
-                
-                if (i === 1) {
-                    expressao += termo;
-                } else {
-                    expressao += " + " + termo;
-                }
-            }
-            
-            console.log(expressao);
-            console.log("A soma é: " + soma);
-        }
-    </script>
+    <div class="card">
+      <h2>5. Soma da Série (1 + 11 + 111 + ...)</h2>
+      <input type="text" id="numTermos" placeholder="Quantidade de termos">
+      <button onclick="calcularSoma()">Calcular</button>
+      <div class="output" id="outputSoma">Digite a quantidade de termos.</div>
+    </div>
+
+  </div>
+
+  <script>
+    let numeroSecreto = Math.floor(Math.random() * 20) + 1;
+    let tentativas = 0;
+
+    function adivinhar() {
+      const input = document.getElementById("palpite");
+      const output = document.getElementById("outputAdivinhacao");
+      const palpite = parseInt(input.value);
+
+      if (isNaN(palpite) || palpite < 1 || palpite > 20) {
+        output.innerHTML = '<span class="error">Digite um número válido entre 1 e 20!</span>';
+        return;
+      }
+
+      tentativas++;
+
+      if (palpite === numeroSecreto) {
+        output.innerHTML = `<span class="success">Parabéns! Você acertou em ${tentativas} tentativa(s)!</span>`;
+      } else if (palpite < numeroSecreto) {
+        output.innerHTML = `<span class="hint">${palpite} → O número secreto é MAIOR! (tentativa ${tentativas})</span>`;
+      } else {
+        output.innerHTML = `<span class="hint">${palpite} → O número secreto é MENOR! (tentativa ${tentativas})</span>`;
+      }
+
+      input.value = "";
+    }
+
+    function resetarAdivinhacao() {
+      numeroSecreto = Math.floor(Math.random() * 20) + 1;
+      tentativas = 0;
+      document.getElementById("palpite").value = "";
+      document.getElementById("outputAdivinhacao").innerHTML = "Novo jogo iniciado! Tente adivinhar o número entre 1 e 20!";
+    }
+
+    function jogarPPS() {
+      const output = document.getElementById("outputPPS");
+      const escolhaUsuario = document.getElementById("escolhaUsuario").value.toLowerCase().trim();
+      const opcoes = ["pedra", "papel", "tesoura"];
+
+      if (!opcoes.includes(escolhaUsuario)) {
+        output.innerHTML = '<span class="error">Digite exatamente: pedra, papel ou tesoura!</span>';
+        return;
+      }
+
+      const escolhaComputador = opcoes[Math.floor(Math.random() * 3)];
+
+      let resultado = "";
+      if (escolhaUsuario === escolhaComputador) {
+        resultado = '<span class="info">Empate!</span>';
+      } else if (
+        (escolhaUsuario === "pedra" && escolhaComputador === "tesoura") ||
+        (escolhaUsuario === "papel" && escolhaComputador === "pedra") ||
+        (escolhaUsuario === "tesoura" && escolhaComputador === "papel")
+      ) {
+        resultado = '<span class="success">Você VENCEU!</span>';
+      } else {
+        resultado = '<span class="error">Você PERDEU!</span>';
+      }
+
+      output.innerHTML =
+        `Você: ${escolhaUsuario}\n` +
+        `Computador: ${escolhaComputador}\n\n` +
+        resultado;
+    }
+
+    function mostrarTabuada() {
+      const output = document.getElementById("outputTabuada");
+      const numero = parseInt(document.getElementById("numTabuada").value);
+
+      if (isNaN(numero)) {
+        output.innerHTML = '<span class="error">Por favor, digite um número válido!</span>';
+        return;
+      }
+
+      let resultado = `Tabuada do ${numero}:\n`;
+      for (let i = 1; i <= 10; i++) {
+        resultado += `${numero} x ${i} = ${numero * i}\n`;
+      }
+
+      output.textContent = resultado;
+    }
+
+    function mostrarTriangulo() {
+      const output = document.getElementById("outputTriangulo");
+      const linhas = parseInt(document.getElementById("numLinhas").value);
+
+      if (isNaN(linhas) || linhas <= 0) {
+        output.innerHTML = '<span class="error">Digite um número válido maior que zero!</span>';
+        return;
+      }
+
+      if (linhas > 20) {
+        output.innerHTML = '<span class="error">Use no máximo 20 linhas!</span>';
+        return;
+      }
+
+      let triangulo = "";
+      for (let i = 1; i <= linhas; i++) {
+        triangulo += "*".repeat(i) + "\n";
+      }
+
+      output.textContent = triangulo;
+    }
+
+    function calcularSoma() {
+      const output = document.getElementById("outputSoma");
+      const n = parseInt(document.getElementById("numTermos").value);
+
+      if (isNaN(n) || n <= 0) {
+        output.innerHTML = '<span class="error">Digite um número válido maior que zero!</span>';
+        return;
+      }
+
+      if (n > 15) {
+        output.innerHTML = '<span class="error">Use no máximo 15 termos!</span>';
+        return;
+      }
+
+      let soma = 0;
+      let termo = 0;
+      let partes = [];
+
+      for (let i = 1; i <= n; i++) {
+        termo = termo * 10 + 1;
+        soma += termo;
+        partes.push(termo);
+      }
+
+      const somaFormatada = soma.toLocaleString("pt-BR");
+
+      output.innerHTML =
+        partes.join(" + ") + "\n\n" +
+        `<span class="success">A soma é: ${somaFormatada}</span>`;
+    }
+  </script>
 </body>
 </html>
