@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>DOM: Página Interativa com JavaScript</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+
+    h1 { margin-bottom: 20px; }
+
+    section {
+      margin-bottom: 30px;
+    }
+
+    button {
+      margin-right: 5px;
+      padding: 4px 10px;
+      cursor: pointer;
+    }
+
+    #contador {
+      display: inline;
+      margin-left: 10px;
+      font-size: 1rem;
+    }
+
+    #char-count {
+      font-size: 0.95rem;
+      margin-top: 4px;
+    }
+
+    #paragrafos p {
+      margin: 4px 0;
+    }
+
+    #lista-container {
+      margin-top: 10px;
+    }
+
+    select {
+      margin-right: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>DOM: Página Interativa com JavaScript</h1>
+
+  <!-- 1. Contador -->
+  <section>
+    <button id="btn-inc">Incrementar</button>
+    <button id="btn-dec">Decrementar</button>
+    <p id="contador">0</p>
+  </section>
+
+  <!-- 2. Campo de texto + contador de caracteres -->
+  <section>
+    <input type="text" id="campo-texto" placeholder="Digite algo..."><br>
+    <span id="char-count">0 caracteres</span>
+  </section>
+
+  <!-- 3. Parágrafos adicionados dinamicamente -->
+  <section id="paragrafos"></section>
+
+  <!-- 4. Adicionar lista -->
+  <section>
+    <label for="tipo-lista">Escolha o tipo de lista:</label>
+    <select id="tipo-lista">
+      <option value="ul">Lista Não Ordenada</option>
+      <option value="ol">Lista Ordenada</option>
+    </select>
+    <button id="btn-lista">Adicionar Lista</button>
+    <div id="lista-container"></div>
+  </section>
+
+  <!-- 5. Reset -->
+  <section>
+    <button id="btn-reset">Resetar Tudo</button>
+  </section>
+
+  <script>
+    // --- Contador ---
+    var contador = 0;
+    var elContador = document.getElementById('contador');
+    var btnInc = document.getElementById('btn-inc');
+    var btnDec = document.getElementById('btn-dec');
+
+    btnInc.addEventListener('click', function () {
+      contador++;
+      elContador.textContent = contador;
+    });
+
+    btnDec.addEventListener('click', function () {
+      if (contador === 0) {
+        alert('O contador já está em zero!');
+      } else {
+        contador--;
+        elContador.textContent = contador;
+      }
+    });
+
+    // --- Campo de texto ---
+    var campoTexto = document.getElementById('campo-texto');
+    var charCount = document.getElementById('char-count');
+    var secParagrafos = document.getElementById('paragrafos');
+
+    campoTexto.addEventListener('input', function () {
+      var semEspacos = campoTexto.value.replace(/ /g, '');
+      charCount.textContent = semEspacos.length + ' caracteres';
+    });
+
+    campoTexto.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' && campoTexto.value.trim() !== '') {
+        var p = document.createElement('p');
+        p.textContent = campoTexto.value;
+        secParagrafos.appendChild(p);
+        campoTexto.value = '';
+        charCount.textContent = '0 caracteres';
+      }
+    });
+
+    // --- Adicionar Lista ---
+    var btnLista = document.getElementById('btn-lista');
+    var tipoLista = document.getElementById('tipo-lista');
+    var listaContainer = document.getElementById('lista-container');
+
+    btnLista.addEventListener('click', function () {
+      var tipo = tipoLista.value;
+      var lista = document.createElement(tipo);
+
+      for (var i = 1; i <= 3; i++) {
+        var li = document.createElement('li');
+        li.textContent = 'Item ' + i;
+        lista.appendChild(li);
+      }
+
+      listaContainer.appendChild(lista);
+    });
+
+    // --- Reset ---
+    var btnReset = document.getElementById('btn-reset');
+
+    btnReset.addEventListener('click', function () {
+      contador = 0;
+      elContador.textContent = '0';
+      campoTexto.value = '';
+      charCount.textContent = '0 caracteres';
+      secParagrafos.innerHTML = '';
+      listaContainer.innerHTML = '';
+    });
+  </script>
+
+</body>
+</html>
